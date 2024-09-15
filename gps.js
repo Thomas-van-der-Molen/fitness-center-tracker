@@ -1,47 +1,56 @@
-function geoFindMe() {
-    const status = document.querySelector("#status");
-    const mapLink = document.querySelector("#map-link");
-  
-    mapLink.href = "";
-    mapLink.textContent = "";
-  
-    function success(position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      //console.log(position);
-      sendLocationToServer(position);
-  
-      status.textContent = "";
-      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-      mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+function sendLocationToServer(location) {
+  //console.log(location);
+  console.log(JSON.stringify(location));
+  fetch("https://localhost/getLocation", {
+    method: "POST",
+    body: JSON.stringify(location),
+    headers: {
+      "Content-Type": "application/json",
+      //fix this before production release
+      //https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin?utm_source=devtools&utm_medium=firefox-cors-errors&utm_campaign=default
+
     }
+  });
+}
+
+async function getDataFromServer() {
+  const fromServer = await fetch("https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-d8c87cf3-3b1e-403c-86e4-290e57b53ce7/site_functions/test")
+  const data = await fromServer.json();
+  console.log(data);
+  //console.log(data.User_at_fitness_center);
   
-    function error() {
-      status.textContent = "Unable to retrieve your location";
-    }
+  if(data.User_at_fitness_center){
+    //the server has determined that the user is at the gym
+    document.querySelector("#location_at_gym").style.display = "";
+    document.querySelector("#location_not_gym").style.display = "none";
+  }
+  else{
+    //the sever has determined that the user is not at the gym
+    document.querySelector("#location_at_gym").style.display = "none";
+    document.querySelector("#location_not_gym").style.display = "";
+  }
+}
+
+async function giveDataToServer(data){
+
+}
+
+function geoFindMe(){
   
-    if (!navigator.geolocation) {
-      status.textContent = "Geolocation is not supported by your browser";
-    } else {
-      status.textContent = "Locating…";
-      navigator.geolocation.getCurrentPosition(success, error);
-    }
+  function success(pos){
+    //giveDataToServer(pos);
+    giveDataToServer(pos);
   }
 
-  function sendLocationToServer(location){
-    //console.log(location);
-    console.log(JSON.stringify(location));
-    fetch("https://localhost/getLocation", {
-        method: "POST",
-        body: JSON.stringify(location),
-        headers: {
-            "Content-Type" : "application/json",
-            //fix this before production release
-            //https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSMissingAllowOrigin?utm_source=devtools&utm_medium=firefox-cors-errors&utm_campaign=default
+  function error(err){
 
-        }
-    });
   }
-  
-document.querySelector("#find-me").addEventListener("click", geoFindMe);
-  
+
+  navigator.geolocation.watchPosition(success,error,{enableHighAccuracy: true});
+}
+
+getDataFromServer();
+geoFindMe();
+
+//document.querySelector("#find-me").addEventListener("click", geoFindMe);
+//document.querySelector("#find-me").addEventListener("click", getDataFromServer);

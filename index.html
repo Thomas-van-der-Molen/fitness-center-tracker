@@ -7,10 +7,17 @@
     <title>eraudb-fitness-center</title>
 </head>
 <body>
-    <h1>{{.Name}}</h1>
+    <div id="panel-container" class="w3-row">
+        <div id="location_not_gym" class="w3-panel w3-red w3-mobile">
+            <h1>You are not at the fitness center</h1>
+        </div>
+        <div id="location_at_gym" class="w3-panel w3-blue w3-mobile">
+            <h1>You are at the fitness center</h1>
+        </div>
+    </div>
     <button id="find-me">Show my location</button>
     <p id="status"></p>
     <a id="map-link" target="_blank"></a>
-    <script type="text/javascript" src="./gps.js"></script>
+    <script src="gps.js"></script>
 </body>
 </html>
