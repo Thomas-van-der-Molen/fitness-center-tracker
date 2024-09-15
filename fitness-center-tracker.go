@@ -14,6 +14,10 @@ type info struct{
 	Name string
 }
 
+type userData struct{
+	Coords map[string]interface{}
+	Timestamp int
+}
 
 func main(){
 	
@@ -34,11 +38,15 @@ func main(){
 			fmt.Fprintf(w, "invalid method");
 		}else{
 			
-			//got damn this took way too long to implement
-			var received interface{};
-			json.NewDecoder(r.Body).Decode(&received);
-			fmt.Println(received);
-			
+		
+			var clientData userData;
+			json.NewDecoder(r.Body).Decode(&clientData);
+			//fmt.Println(clientData.Coords);
+			fmt.Println(clientData.Coords["latitude"]);
+			fmt.Println(clientData.Coords["longitude"]);
+			fmt.Println(clientData.Timestamp);
+			//bounding box
+			//[-81.0496033886,29.1893211524],[-81.0503594703,29.189856592],[-81.0499238968,29.1903253587],[-81.0491678151,29.1897899216],[-81.0496033886,29.1893211524]
 		}
 	});
 
