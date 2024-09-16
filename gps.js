@@ -1,22 +1,3 @@
-async function getDataFromServer() {
-  const fromServer = await fetch("https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-d8c87cf3-3b1e-403c-86e4-290e57b53ce7/site_functions/get_data")
-  const data = await fromServer.json();
-  
-  console.log(data);
-  //console.log(data.User_at_fitness_center);
-  
-  if(data.User_at_fitness_center){
-    //the server has determined that the user is at the gym
-    document.querySelector("#location_at_gym").style.display = "";
-    document.querySelector("#location_not_gym").style.display = "none";
-  }
-  else{
-    //the sever has determined that the user is not at the gym
-    document.querySelector("#location_at_gym").style.display = "none";
-    document.querySelector("#location_not_gym").style.display = "";
-  }
-}
-
 function updateDisplay(User_at_fitness_center){
   if(User_at_fitness_center){
     //the server has determined that the user is at the gym
@@ -59,7 +40,8 @@ function getUserPos(){
   function error(err){
     console.log(err);
   }
-  navigator.geolocation.getCurrentPosition(success, error)
+  //navigator.geolocation.getCurrentPosition(success, error, {enableHighAccuracy: true});
+  navigator.geolocation.watchPosition(success, error, {enableHighAccuracy: true});
 }
 
 
