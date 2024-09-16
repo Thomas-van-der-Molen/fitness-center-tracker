@@ -17,6 +17,19 @@ async function getDataFromServer() {
   }
 }
 
+function updateDisplay(User_at_fitness_center){
+  if(User_at_fitness_center){
+    //the server has determined that the user is at the gym
+    document.querySelector("#location_at_gym").style.display = "";
+    document.querySelector("#location_not_gym").style.display = "none";
+  }
+  else{
+    //the sever has determined that the user is not at the gym
+    document.querySelector("#location_at_gym").style.display = "none";
+    document.querySelector("#location_not_gym").style.display = "";
+  }
+}
+
 async function giveDataToServer(coords){
   //console.log("client lat/long datatype");
   //console.log(typeof coords.latitude);
@@ -31,7 +44,8 @@ async function giveDataToServer(coords){
 
   const data = await response.json();
   console.log("data returned by the server");
-  console.log(data);
+  //console.log(data.User_at_fitness_center);
+  updateDisplay(data.User_at_fitness_center);
 }
 
 function getUserPos(){
