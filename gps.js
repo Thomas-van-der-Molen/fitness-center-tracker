@@ -60,9 +60,7 @@ function getUserPos(){
   navigator.geolocation.getCurrentPosition(success, error)
 }
 
-//getDataFromServer();
+
 getUserPos();
 
 
-//document.querySelector("#find-me").addEventListener("click", geoFindMe);
-//document.querySelector("#find-me").addEventListener("click", getDataFromServer);
