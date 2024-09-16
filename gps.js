@@ -14,7 +14,7 @@ function sendLocationToServer(location) {
 }
 
 async function getDataFromServer() {
-  const fromServer = await fetch("https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-d8c87cf3-3b1e-403c-86e4-290e57b53ce7/site_functions/test")
+  const fromServer = await fetch("https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-d8c87cf3-3b1e-403c-86e4-290e57b53ce7/site_functions/send_to_client")
   const data = await fromServer.json();
   console.log(data);
   //console.log(data.User_at_fitness_center);
