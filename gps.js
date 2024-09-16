@@ -26,7 +26,7 @@ async function giveDataToServer(coords){
     headers: {
       "Content-Type":"application/x-www-form-urlencoded",
     },
-    body: JSON.stringify({lat:String(coords.latitude),lon:string(coords.longitude)})
+    body: JSON.stringify({lat:coords.latitude.toString(),lon:coords.longitude.toString()})
   });
 
   const data = await response.json();
