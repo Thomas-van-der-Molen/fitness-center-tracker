@@ -60,8 +60,5 @@ func Main(ctx context.Context, event map[string]interface{}) Response {
 			User_latitude:          event["lat"],
 			User_longitude:         event["lon"],
 		},
-		Headers: ResponseHeaders{
-			CORS: "*",
-		},
 	}
 }
