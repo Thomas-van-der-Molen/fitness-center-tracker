@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+    <link rel="manifest" href="manifest.json">
     <title>eraudb-fitness-center</title>
 </head>
 <body>
@@ -19,5 +20,14 @@
     <p id="status"></p>
     <a id="map-link" target="_blank"></a>
     <script src="gps.js"></script>
+
+    <!-- I hope this works -->
+    <script>
+        if (!navigator.serviceWorker.controller) {
+            navigator.serviceWorker.register("/sw.js").then(function(reg) {
+                console.log("Service worker has been registered for scope: " + reg.scope);
+            });
+        }
+    </script>
 </body>
 </html>
