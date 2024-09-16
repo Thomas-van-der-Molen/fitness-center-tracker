@@ -1,0 +1,21 @@
+{
+    "name": "fitness-center-tracker",
+    "short_name": "eraudb-fitness",
+    "theme_color": "#2196f3",
+    "background_color": "#2196f3",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "icons/strong512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "icons/strong192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ]
+  }
