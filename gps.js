@@ -45,10 +45,10 @@ function getUserPos(){
     document.querySelector("#map-link").href = `https://www.openstreetmap.org/#map=18/${pos.coords.latitude}/${pos.coords.longitude}`;
 
     if(pos.coords.latitude > min_lat && pos.coords.longitude > min_lon && pos.coords.latitude < max_lat && pos.coords.longitude < max_lon){
-      document.querySelector("#temp").textContent = "you are not at the fitness center";
+      document.querySelector("#temp").textContent = "you are at the fitness center";
     }
     else{
-      document.querySelector("#temp").textContent = "you are at the fitness center";
+      document.querySelector("#temp").textContent = "you are not at the fitness center";
     }
 
   }
