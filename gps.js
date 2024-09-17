@@ -34,7 +34,7 @@ async function giveDataToServer(coords){
 function getUserPos(){
 
   function success(pos){
-    //giveDataToServer(pos.coords);
+    giveDataToServer(pos.coords);
     //check the coordinates clientside
     //const max_lat  = -81.0499630643;
     //const min_lat  = -81.049240209;
@@ -45,7 +45,7 @@ function getUserPos(){
     const min_lat = -81.0501176272
     const max_lon = 29.190036488
     const min_lon = 29.189212246
-    console.log("update success");
+    /*console.log("update success");
     //-81.0501176272,29.189212246,-81.0490581547,29.190036488
 
     document.querySelector("#map-link").href = `https://www.openstreetmap.org/#map=18/${pos.coords.latitude}/${pos.coords.longitude}`;
@@ -55,7 +55,7 @@ function getUserPos(){
     }
     else{
       document.querySelector("#temp").textContent = "you are not at the fitness center";
-    }
+    }*/
 
   }
 
