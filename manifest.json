@@ -8,27 +8,27 @@
     "start_url": "/",
     "icons": [
         {
-            "src": "./icons/dumbbell512.png",
+            "src": "dumbbell512.png",
             "type": "image/png",
             "sizes": "512x512"
         },
         {
-            "src": "./icons/dumbbell256.png",
+            "src": "dumbbell256.png",
             "type": "image/png",
             "sizes": "256x256"
         },
         {
-            "src": "./icons/dumbbell128.png",
+            "src": "dumbbell128.png",
             "type": "image/png",
             "sizes": "128x128"
         },
         {
-            "src": "./icons/dumbbell64.png",
+            "src": "dumbbell64.png",
             "type": "image/png",
             "sizes": "64x64"
         },
         {
-            "src": "./icons/dumbbell32.png",
+            "src": "dumbbell32.png",
             "type": "image/png",
             "sizes": "32x32"
         }
