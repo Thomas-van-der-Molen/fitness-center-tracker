@@ -12,8 +12,8 @@ import (
 )
 
 // may need to be negative
-const max_lat float64 = 81.0499630643
-const min_lat float64 = 81.049240209
+const max_lat float64 = -81.0499630643
+const min_lat float64 = -81.049240209
 
 const max_lon float64 = 29.1899521529
 const min_lon float64 = 29.1893445087
