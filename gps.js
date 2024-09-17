@@ -59,6 +59,7 @@ function getUserPos(){
   }
 
   function error(err){
+    document.querySelector("#debug").textContent = "error updating position";
     console.log(err);
   }
   //navigator.geolocation.getCurrentPosition(success, error, {enableHighAccuracy: true});
