@@ -45,6 +45,7 @@ function getUserPos(){
     const min_lat = -81.0501176272
     const max_lon = 29.190036488
     const min_lon = 29.189212246
+    console.log("update success");
     //-81.0501176272,29.189212246,-81.0490581547,29.190036488
 
     document.querySelector("#map-link").href = `https://www.openstreetmap.org/#map=18/${pos.coords.latitude}/${pos.coords.longitude}`;
@@ -59,6 +60,7 @@ function getUserPos(){
   }
 
   function error(err){
+    console.log("update fail");
     document.querySelector("#debug").textContent = "error updating position" + " last update " + Date.now();
     console.log(err);
   }
