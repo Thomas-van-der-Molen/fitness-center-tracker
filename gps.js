@@ -31,31 +31,36 @@ async function giveDataToServer(coords){
   updateDisplay(data.User_at_fitness_center);
 }
 
+function checkUserPos(coords){
+  max_lat = -81.0490581547
+  min_lat = -81.0501176272
+  max_lon = 29.190036488
+  min_lon = 29.189212246
+
+  console.log("update success");
+
+  //document.querySelector("#map-link").href = `https://www.openstreetmap.org/#map=18/${coords.latitude}/${coords.longitude}`;
+  document.querySelector("#debug").textContent = coords.latitude.toString() + " " + coords.longitude.toString() + " last update " + Date.now();
+  if(coords.latitude > min_lat && coords.longitude > min_lon && coords.latitude < max_lat && coords.longitude < max_lon){
+    document.querySelector("#temp").textContent = "you are at the fitness center";
+  }
+  else{
+    document.querySelector("#temp").textContent = "you are not at the fitness center";
+  }
+
+}
+
 function getUserPos(){
 
   function success(pos){
-    giveDataToServer(pos.coords);
+    checkUserPos(pos.coords);
+    //giveDataToServer(pos.coords);
     //check the coordinates clientside
     //const max_lat  = -81.0499630643;
     //const min_lat  = -81.049240209;
 
     //const max_lon  = 29.1899521529;
     //const min_lon  = 29.1893445087;
-    const max_lat = -81.0490581547
-    const min_lat = -81.0501176272
-    const max_lon = 29.190036488
-    const min_lon = 29.189212246
-    /*console.log("update success");
-    //-81.0501176272,29.189212246,-81.0490581547,29.190036488
-
-    document.querySelector("#map-link").href = `https://www.openstreetmap.org/#map=18/${pos.coords.latitude}/${pos.coords.longitude}`;
-    document.querySelector("#debug").textContent = pos.coords.latitude.toString() + " " + pos.coords.longitude.toString() + " last update " + Date.now();
-    if(pos.coords.latitude > min_lat && pos.coords.longitude > min_lon && pos.coords.latitude < max_lat && pos.coords.longitude < max_lon){
-      document.querySelector("#temp").textContent = "you are at the fitness center";
-    }
-    else{
-      document.querySelector("#temp").textContent = "you are not at the fitness center";
-    }*/
 
   }
 
