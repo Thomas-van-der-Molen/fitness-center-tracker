@@ -34,7 +34,16 @@ async function giveDataToServer(coords){
 function getUserPos(){
 
   function success(pos){
-    giveDataToServer(pos.coords);
+    //giveDataToServer(pos.coords);
+    //check the coordinates clientside
+    const max_lat  = -81.0499630643;
+    const min_lat  = -81.049240209;
+
+    const max_lon  = 29.1899521529;
+    const min_lon  = 29.1893445087;
+
+    document.querySelector("#map-link").href = `https://www.openstreetmap.org/#map=18/${pos.coords.latitude}/${pos.coords.longitude}`;
+
   }
 
   function error(err){
