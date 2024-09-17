@@ -48,7 +48,7 @@ function getUserPos(){
     //-81.0501176272,29.189212246,-81.0490581547,29.190036488
 
     document.querySelector("#map-link").href = `https://www.openstreetmap.org/#map=18/${pos.coords.latitude}/${pos.coords.longitude}`;
-    document.querySelector("#debug").textContent = pos.coords.latitude.toString() + " " + pos.coords.longitude.toString();
+    document.querySelector("#debug").textContent = pos.coords.latitude.toString() + " " + pos.coords.longitude.toString() + " last update " + Date.now();
     if(pos.coords.latitude > min_lat && pos.coords.longitude > min_lon && pos.coords.latitude < max_lat && pos.coords.longitude < max_lon){
       document.querySelector("#temp").textContent = "you are at the fitness center";
     }
@@ -59,7 +59,7 @@ function getUserPos(){
   }
 
   function error(err){
-    document.querySelector("#debug").textContent = "error updating position";
+    document.querySelector("#debug").textContent = "error updating position" + " last update " + Date.now();
     console.log(err);
   }
   //navigator.geolocation.getCurrentPosition(success, error, {enableHighAccuracy: true});
