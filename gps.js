@@ -43,7 +43,7 @@ function getUserPos(){
     const min_lon  = 29.1893445087;
 
     document.querySelector("#map-link").href = `https://www.openstreetmap.org/#map=18/${pos.coords.latitude}/${pos.coords.longitude}`;
-
+    document.querySelector("#debug").textContent = pos.coords.latitude.toString() + " " + pos.coords.longitude.toString();
     if(pos.coords.latitude > min_lat && pos.coords.longitude > min_lon && pos.coords.latitude < max_lat && pos.coords.longitude < max_lon){
       document.querySelector("#temp").textContent = "you are at the fitness center";
     }
