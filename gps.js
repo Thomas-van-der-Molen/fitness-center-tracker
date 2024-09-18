@@ -32,10 +32,10 @@ async function giveDataToServer(coords){
 }
 
 function checkUserPos(coords){
-  max_lat = -81.0490581547
-  min_lat = -81.0501176272
-  max_lon = 29.190036488
-  min_lon = 29.189212246
+  max_lon = -81.0490581547
+  min_lon = -81.0501176272
+  max_lat = 29.190036488
+  min_lat = 29.189212246
 
   console.log("update success");
 
