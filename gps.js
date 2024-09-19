@@ -37,15 +37,13 @@ function checkUserPos(coords){
   max_lat = 29.190036488
   min_lat = 29.189212246
 
-  console.log("update success");
-
   //document.querySelector("#map-link").href = `https://www.openstreetmap.org/#map=18/${coords.latitude}/${coords.longitude}`;
   document.querySelector("#debug").textContent = coords.latitude.toString() + " " + coords.longitude.toString() + " last update " + Date.now();
   if(coords.latitude > min_lat && coords.longitude > min_lon && coords.latitude < max_lat && coords.longitude < max_lon){
-    document.querySelector("#temp").textContent = "you are at the fitness center";
+    document.querySelector("#temp").textContent = "true";
   }
   else{
-    document.querySelector("#temp").textContent = "you are not at the fitness center";
+    document.querySelector("#temp").textContent = "false";
   }
 
 }
