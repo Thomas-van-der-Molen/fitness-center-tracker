@@ -91,8 +91,8 @@ async function updateCount(){
     },
     body: JSON.stringify({"function":"get_count"})
   });
+  console.log(response);
   const data = await response.JSON;
-  console.log(data);
 }
 
 
