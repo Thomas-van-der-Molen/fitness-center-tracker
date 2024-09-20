@@ -28,7 +28,7 @@ type data struct {
 
 type Response struct {
 	Body    data            `json:"body"`
-	Headers ResponseHeaders `json:"headers"`
+	//Headers ResponseHeaders `json:"headers"`
 }
 
 func Main(ctx context.Context, event map[string]interface{}) Response {
@@ -57,9 +57,9 @@ func Main(ctx context.Context, event map[string]interface{}) Response {
 		Body: data{
 			Count: returnedCount,
 		},
-		Headers: ResponseHeaders{
+		/*Headers: ResponseHeaders{
 			CORS: "https://fitness.thomasvandermolen.com",
-		},
+		},*/
 	}
 }
 

@@ -21,15 +21,6 @@
     <script src="gps.js"></script>
     <h1 id="temp"></h1>
 
-    <!-- I hope this works -->
-    <script>
-        if (!navigator.serviceWorker.controller) {
-            navigator.serviceWorker.register("/sw.js").then(function(reg) {
-                console.log("Service worker has been registered for scope: " + reg.scope);
-            });
-        }
-    </script>
-
     <footer class="w3-container w3-teal">
         <a href="https://www.flaticon.com/free-icons/gym" title="gym icons">Gym icons created by Freepik - Flaticon</a>
     </footer>
