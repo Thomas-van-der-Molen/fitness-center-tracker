@@ -92,7 +92,8 @@ async function updateCount(){
     body: JSON.stringify({"function":"get_count"})
   });
   const data = await response.json();
-  console.log(data);
+  //console.log(data);
+  document.querySelector("#numUsersLabel").textContent = "Users at the gym: " + data.count.toString();
 }
 
 
