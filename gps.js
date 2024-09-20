@@ -82,6 +82,7 @@ function getUserPos(){
 }
 
 async function updateCount(){
+  console.log("hello from update count");
   const url = "https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-d8c87cf3-3b1e-403c-86e4-290e57b53ce7/site_functions/get_data";
   const response = await fetch(url, {
     method: "POST",
