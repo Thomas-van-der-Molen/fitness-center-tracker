@@ -1,6 +1,6 @@
 {
-    "name": "fitness-center-tracker",
-    "short_name": "eraudb-fitness",
+    "name": "erau-crowdmeter",
+    "short_name": "erau-crowdmeter",
     "theme_color": "#2196f3",
     "background_color": "#2196f3",
     "display": "standalone",

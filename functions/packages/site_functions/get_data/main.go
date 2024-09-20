@@ -51,6 +51,8 @@ func Main(ctx context.Context, event map[string]interface{}) Response {
 		returnedCount = inc_count();
 	}else if function == "dec_count"{
 		returnedCount = dec_count();
+	}else if function == "rst_count"{
+		returnedCount = rst_count();
 	}
 
 	return Response{
