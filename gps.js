@@ -3,13 +3,13 @@ function updateDisplay(User_at_fitness_center){
     //the server has determined that the user is at the gym
     document.querySelector("#location_at_gym").style.display = "";
     document.querySelector("#location_not_gym").style.display = "none";
-    document.querySelector("#temp").textContent = "you are at the fitness center";
+    //document.querySelector("#temp").textContent = "you are at the fitness center";
   }
   else{
     //the sever has determined that the user is not at the gym
     document.querySelector("#location_at_gym").style.display = "none";
     document.querySelector("#location_not_gym").style.display = "";
-    document.querySelector("#temp").textContent = "you are not at the fitness center";
+    //document.querySelector("#temp").textContent = "you are not at the fitness center";
   }
 }
 
