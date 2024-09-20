@@ -1,6 +1,6 @@
 {
     "name": "erau-crowdmeter",
-    "short_name": "erau-crowdmeter",
+    "short_name": "crowdmeter",
     "theme_color": "#2196f3",
     "background_color": "#2196f3",
     "display": "standalone",
