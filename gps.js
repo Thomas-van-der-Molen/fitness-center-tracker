@@ -38,7 +38,7 @@ function checkUserPos(coords){
 
   //only notify the server if user's status of "at gym" or "not at gym" changed
   if(userAtGym != lastUserAtGym){
-    lasetUserAtGym = userAtGym;
+    lastUserAtGym = userAtGym;
     document.querySelector("#debug").textContent = "Invoked server API";
     //call the API
     if(userAtGym){
