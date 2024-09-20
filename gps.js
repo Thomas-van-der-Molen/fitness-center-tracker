@@ -81,7 +81,21 @@ function getUserPos(){
   navigator.geolocation.watchPosition(success, error, {enableHighAccuracy: true});
 }
 
+async function updateCount(){
+  const url = "https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-d8c87cf3-3b1e-403c-86e4-290e57b53ce7/site_functions/get_data";
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type":"application/json",
+    },
+    body: JSON.stringify({function:get_count})
+  });
+  const data = await response.JSON;
+  console.log(data);
+}
+
 
 getUserPos();
+updateCount();
 
 
