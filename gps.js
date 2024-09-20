@@ -31,19 +31,37 @@ async function giveDataToServer(coords){
   updateDisplay(data.User_at_fitness_center);
 }
 
+lastUserAtGym=false;
 function checkUserPos(coords){
   max_lon = -81.0490581547
   min_lon = -81.0501176272
   max_lat = 29.190036488
   min_lat = 29.189212246
 
+  userAtGym=false;
   //document.querySelector("#map-link").href = `https://www.openstreetmap.org/#map=18/${coords.latitude}/${coords.longitude}`;
-  document.querySelector("#debug").textContent = coords.latitude.toString() + " " + coords.longitude.toString() + " last update " + Date.now();
+  //document.querySelector("#debug").textContent = coords.latitude.toString() + " " + coords.longitude.toString() + " last update " + Date.now();
   if(coords.latitude > min_lat && coords.longitude > min_lon && coords.latitude < max_lat && coords.longitude < max_lon){
-    document.querySelector("#temp").textContent = "true";
+    //user is at the gym
+    //document.querySelector("#temp").textContent = "true";
+    userAtGym=true;
   }
   else{
-    document.querySelector("#temp").textContent = "false";
+    //user is not at the gym
+    //document.querySelector("#temp").textContent = "false";
+    userAtGym=false;
+  }
+
+  updateDisplay(userAtGym);
+
+  //only notify the server if user's status of "at gym" or "not at gym" changed
+  if(userAtGym != lastUserAtGym){
+    lasetUserAtGym = userAtGym;
+    document.querySelector("#debug").textContent = "Invoked server API";
+    //call the API
+  }
+  else{
+    document.querySelector("#debug").textContent = "";
   }
 
 }
@@ -52,14 +70,6 @@ function getUserPos(){
 
   function success(pos){
     checkUserPos(pos.coords);
-    //giveDataToServer(pos.coords);
-    //check the coordinates clientside
-    //const max_lat  = -81.0499630643;
-    //const min_lat  = -81.049240209;
-
-    //const max_lon  = 29.1899521529;
-    //const min_lon  = 29.1893445087;
-
   }
 
   function error(err){

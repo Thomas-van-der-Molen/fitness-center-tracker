@@ -11,13 +11,6 @@ import (
 	"strconv"
 )
 
-// may need to be negative
-const max_lat float64 = -81.0499630643
-const min_lat float64 = -81.049240209
-
-const max_lon float64 = 29.1899521529
-const min_lon float64 = 29.1893445087
-
 type ResponseHeaders struct {
 	CORS string `json:"Access-Control-Allow-Origin"`
 }
@@ -42,17 +35,11 @@ func Main(ctx context.Context, event map[string]interface{}) Response {
 
 	//wowie, data encoding and datatypes can be hard to manage
 	latString := event["lat"].(string)
-	lonString := event["lon"].(string)
 	var latFloat, _ = strconv.ParseFloat(latString, 64)
-	var lonFloat, _ = strconv.ParseFloat(lonString, 64)
 	fmt.Println("the type is ", reflect.TypeOf(latFloat))
 	fmt.Println("the value is ", latFloat)
 
 	var user_at_fitness_center bool
-
-	if latFloat > min_lat && lonFloat > min_lon && latFloat < max_lat && lonFloat < max_lon {
-		user_at_fitness_center = true
-	}
 
 	return Response{
 		Body: data{
