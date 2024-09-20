@@ -59,6 +59,16 @@ function checkUserPos(coords){
     lasetUserAtGym = userAtGym;
     document.querySelector("#debug").textContent = "Invoked server API";
     //call the API
+    if(userAtGym){
+      //the user just entered the gym
+      incrementCount();
+      updateCount();
+    }
+    else{
+      //the user just left the gym
+      decrementCount();
+      updateCount();
+    }
   }
   else{
     document.querySelector("#debug").textContent = "";
@@ -81,8 +91,29 @@ function getUserPos(){
   navigator.geolocation.watchPosition(success, error, {enableHighAccuracy: true});
 }
 
+async function incrementCount(){
+  const url = "https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-d8c87cf3-3b1e-403c-86e4-290e57b53ce7/site_functions/get_data";
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type":"application/json",
+    },
+    body: JSON.stringify({"function":"inc_count"})
+  });
+}
+
+async function decrementCount(){
+  const url = "https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-d8c87cf3-3b1e-403c-86e4-290e57b53ce7/site_functions/get_data";
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type":"application/json",
+    },
+    body: JSON.stringify({"function":"dec_count"})
+  });
+}
+
 async function updateCount(){
-  console.log("hello from update count");
   const url = "https://faas-nyc1-2ef2e6cc.doserverless.co/api/v1/web/fn-d8c87cf3-3b1e-403c-86e4-290e57b53ce7/site_functions/get_data";
   const response = await fetch(url, {
     method: "POST",
