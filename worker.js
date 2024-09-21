@@ -10,7 +10,7 @@ function getUserPos() {
         console.log(err);
     }
     //navigator.geolocation.getCurrentPosition(success, error, {enableHighAccuracy: true});
-    if("geolocation" in WorkerNavigator){
+    if("geolocation" in WorkerGlobalScope.navigator){
         postMessage("geolocaiton available");
     }
     else{
