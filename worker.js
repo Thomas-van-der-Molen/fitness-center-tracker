@@ -1,3 +1,20 @@
+const addResourcesToCache = async (resources) => {
+    const cache = await caches.open("v1");
+    await cache.addAll(resources);
+};
+
+self.addEventListener("install", (event) => {
+    event.waitUntil(
+        addResourcesToCache([
+            "/",
+            "/index.html",
+            "/gps.js",
+            "/worker.js",
+        ]),
+    );
+});
+
+
 function getUserPos() {
 
     function success(pos) {
@@ -6,7 +23,7 @@ function getUserPos() {
 
     function error(err) {
         console.log("update fail");
-        document.querySelector("#debug").textContent = "error updating position" + " last update " + Date.now();
+        //document.querySelector("#debug").textContent = "error updating position" + " last update " + Date.now();
         console.log(err);
     }
     //navigator.geolocation.getCurrentPosition(success, error, {enableHighAccuracy: true});
@@ -28,7 +45,7 @@ function checkUserPos(coords) {
 
     userAtGym = false;
     //document.querySelector("#map-link").href = `https://www.openstreetmap.org/#map=18/${coords.latitude}/${coords.longitude}`;
-    document.querySelector("#debug").textContent = coords.latitude.toString() + " " + coords.longitude.toString() + " last update " + Date.now();
+    //document.querySelector("#debug").textContent = coords.latitude.toString() + " " + coords.longitude.toString() + " last update " + Date.now();
     if (coords.latitude > min_lat && coords.longitude > min_lon && coords.latitude < max_lat && coords.longitude < max_lon) {
         //user is at the gym
         //document.querySelector("#temp").textContent = "true";
@@ -45,7 +62,7 @@ function checkUserPos(coords) {
     //only notify the server if user's status of "at gym" or "not at gym" changed
     if (userAtGym != lastUserAtGym) {
         lastUserAtGym = userAtGym;
-        document.querySelector("#debug").textContent = "Invoked server API";
+        //document.querySelector("#debug").textContent = "Invoked server API";
         //call the API
         if (userAtGym) {
             //the user just entered the gym
@@ -59,7 +76,7 @@ function checkUserPos(coords) {
         }
     }
     else {
-        document.querySelector("#debug").textContent = "";
+        //document.querySelector("#debug").textContent = "";
     }
 
 }
