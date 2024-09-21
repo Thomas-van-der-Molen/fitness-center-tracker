@@ -10,13 +10,13 @@ function getUserPos() {
         console.log(err);
     }
     //navigator.geolocation.getCurrentPosition(success, error, {enableHighAccuracy: true});
-    if("geolocation" in navigator){
+    if("geolocation" in WorkerNavigator){
         postMessage("geolocaiton available");
     }
     else{
         postMessage("geolocation not avaiable in service worker");
     }
-    navigator.geolocation.watchPosition(success, error, { enableHighAccuracy: true });
+    //navigator.geolocation.watchPosition(success, error, { enableHighAccuracy: true });
 }
 
 let lastUserAtGym = false;
