@@ -53,10 +53,6 @@ const registerServiceWorker = async () => {
     } catch (error) {
       console.error(`Registration failed with ${error}`);
     }
-    registration.onmessage = (e) => {
-      console.log("service worker");
-      console.log(e.data);
-    }
   }
 };
 
