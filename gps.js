@@ -109,8 +109,17 @@ async function updateCount(){
   document.querySelector("#numUsersLabel").textContent = "Users at the gym: " + data.count.toString();
 }
 
+function createWorker(){
+  if(window.Worker){
+    const worker = new Worker("worker.js");
+    worker.onmessage = (e) => {
+      console.log(e.data);
+    }
+  }
+}
 
-getUserPos();
+
+//getUserPos();
 updateCount();
 
 

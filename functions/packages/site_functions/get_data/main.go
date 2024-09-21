@@ -9,10 +9,13 @@ import (
 	_ "fmt"
 	_ "reflect"
 	_ "strconv"
+	_ "time"
 )
 
 //important global variable that keeps track of the current users at the gym
 var count = 0;
+//slice which will store the timers - functions as a queue
+//var timers []time.Timer;
 
 type ResponseHeaders struct {
 	CORS string `json:"Access-Control-Allow-Origin"`
@@ -43,6 +46,8 @@ func Main(ctx context.Context, event map[string]interface{}) Response {
 	//fmt.Println("the type is ", reflect.TypeOf(latFloat))
 	//fmt.Println("the value is ", latFloat)
 
+	//go updateTimers();
+
 	function := event["function"];
 	var returnedCount int;
 	if function == "get_count"{
@@ -65,18 +70,31 @@ func Main(ctx context.Context, event map[string]interface{}) Response {
 	}
 }
 
+func updateTimers(){
+	//<- timers[0].C
+	dec_count();
+}
+
 func get_count() int{
 	return count;
 }
 
 func inc_count() int{
 	count++;
+
+	//add a new timer to the queue
+	//set the timer for one hour
+	//change 10 to 3600 for one hour
+	//timers = append(timers, *time.NewTimer(10 * time.Second));
 	return count;
 }
 
 func dec_count() int{
+	
 	if count > 0{
 		count--;
+		//remove a timer from the queue
+		//timers = timers[1:];
 	}
 	return count;
 }
