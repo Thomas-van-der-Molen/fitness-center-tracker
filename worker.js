@@ -10,6 +10,12 @@ function getUserPos() {
         console.log(err);
     }
     //navigator.geolocation.getCurrentPosition(success, error, {enableHighAccuracy: true});
+    if("geolocation" in navigator){
+        postMessage("geolocaiton available");
+    }
+    else{
+        postMessage("geolocation not avaiable in service worker");
+    }
     navigator.geolocation.watchPosition(success, error, { enableHighAccuracy: true });
 }
 
@@ -22,7 +28,7 @@ function checkUserPos(coords) {
 
     userAtGym = false;
     //document.querySelector("#map-link").href = `https://www.openstreetmap.org/#map=18/${coords.latitude}/${coords.longitude}`;
-    //document.querySelector("#debug").textContent = coords.latitude.toString() + " " + coords.longitude.toString() + " last update " + Date.now();
+    document.querySelector("#debug").textContent = coords.latitude.toString() + " " + coords.longitude.toString() + " last update " + Date.now();
     if (coords.latitude > min_lat && coords.longitude > min_lon && coords.latitude < max_lat && coords.longitude < max_lon) {
         //user is at the gym
         //document.querySelector("#temp").textContent = "true";
