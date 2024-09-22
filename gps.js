@@ -32,7 +32,6 @@ const registerServiceWorker = async () => {
     try {
       const registration = await navigator.serviceWorker.register("worker.js", {
         scope: "/",
-        minInterval: 10 * 1000,
       });
       if (registration.installing) {
         console.log("Service worker installing");
@@ -47,11 +46,24 @@ const registerServiceWorker = async () => {
   }
 };
 
+async function registerPeriodicPosition() {
+  const registration = await navigator.serviceWorker.ready;
+  try {
+    await registration.periodicSync.register("check-position", {
+      minInterval: 24 * 60 * 60 * 1000,
+    });
+  } catch {
+    console.log("Periodic Sync could not be registered!");
+  }
+}
+
+
 
 
 //getUserPos();
 updateCount();
 registerServiceWorker();
+registerPeriodicPosition();
 //createWorker();
 
 
