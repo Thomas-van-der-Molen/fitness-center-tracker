@@ -4,7 +4,8 @@ self.addEventListener("periodicsync", (event) => {
     if (event.tag === "check-position") {
         //event.waitUntil(fetchAndCacheLatestNews());
         console.log("hello from service worker and event triggered");
-        event.waitUntil(incrementCount());
+        //event.waitUntil(incrementCount());
+        incrementCount();
     }
 });
 
