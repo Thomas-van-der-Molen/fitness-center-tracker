@@ -43,26 +43,22 @@ const registerServiceWorker = async () => {
     } catch (error) {
       console.error(`Registration failed with ${error}`);
     }
+
+    try {
+      await registration.periodicSync.register("check-position", {
+        minInterval: 10 * 1000,
+      });
+    } catch {
+      console.log("Periodic Sync could not be registered!");
+    }
   }
 };
-
-async function registerCheckPosition() {
-  const registration = await navigator.serviceWorker.ready;
-  try {
-    await registration.periodicSync.register("check-position", {
-      minInterval: 10 * 1000,
-    });
-  } catch {
-    console.log("Periodic Sync could not be registered!");
-  }
-}
 
 
 
 //getUserPos();
 updateCount();
 registerServiceWorker();
-registerCheckPosition();
 //createWorker();
 
 
