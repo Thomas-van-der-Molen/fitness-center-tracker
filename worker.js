@@ -1,17 +1,11 @@
-const addResourcesToCache = async (resources) => {
-    const cache = await caches.open("v1");
-    await cache.addAll(resources);
-};
 
-self.addEventListener("install", (event) => {
-    event.waitUntil(
-        addResourcesToCache([
-            "/",
-            "/index.html",
-            "/gps.js",
-            "/worker.js",
-        ]),
-    );
+
+self.addEventListener("periodicsync", (event) => {
+    if (event.tag === "check-position") {
+        //event.waitUntil(fetchAndCacheLatestNews());
+        console.log("hello from service worker and event triggered");
+        event.waitUntil(incrementCount());
+    }
 });
 
 
@@ -28,10 +22,10 @@ function getUserPos() {
     }
     //navigator.geolocation.getCurrentPosition(success, error, {enableHighAccuracy: true});
     if("geolocation" in self.navigator){
-        postMessage("geolocaiton available");
+        //postMessage("geolocaiton available");
     }
     else{
-        postMessage("geolocation not avaiable in service worker");
+        //postMessage("geolocation not avaiable in service worker");
     }
     //navigator.geolocation.watchPosition(success, error, { enableHighAccuracy: true });
 }

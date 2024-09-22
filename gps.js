@@ -27,20 +27,10 @@ async function updateCount(){
   document.querySelector("#numUsersLabel").textContent = "Users at the gym: " + data.count.toString();
 }
 
-function createWorker(){
-  if(window.Worker){
-    const worker = new Worker("worker.js");
-    
-    worker.onmessage = (e) => {
-      console.log(e.data);
-    }
-  }
-}
-
 const registerServiceWorker = async () => {
   if ("serviceWorker" in navigator) {
     try {
-      const registration = await navigator.serviceWorker.register("/worker.js", {
+      const registration = await navigator.serviceWorker.register("worker.js", {
         scope: "/",
       });
       if (registration.installing) {
@@ -56,9 +46,23 @@ const registerServiceWorker = async () => {
   }
 };
 
+async function registerCheckPosition() {
+  const registration = await navigator.serviceWorker.ready;
+  try {
+    await registration.periodicSync.register("check-position", {
+      minInterval: 10 * 1000,
+    });
+  } catch {
+    console.log("Periodic Sync could not be registered!");
+  }
+}
+
+
 
 //getUserPos();
 updateCount();
-//createWorker();
 registerServiceWorker();
+registerCheckPosition();
+//createWorker();
+
 
